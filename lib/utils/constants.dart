@@ -1,7 +1,7 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'models.dart';
 
-Map<AnimalType, AnimalObject> animals = {
+final Map<AnimalType, AnimalObject> animals = {
   AnimalType.Cat: AnimalObject(
     icon: FontAwesomeIcons.cat,
     name: 'Cat',
@@ -26,4 +26,22 @@ Map<AnimalType, AnimalObject> animals = {
     apiUrl: 'https://randomfox.ca/floof/',
     type: AnimalType.Fox,
   ),
+};
+
+const Map<String, String> sources = {
+  'catApi': 'https://thecatapi.com/',
+  'dogApi': 'https://thedogapi.com/',
+  'foxApi': 'https://randomfox.ca/',
+  'shibesApi': 'https://shibe.online/',
+  'github': 'https://github.com/uSlashVlad/infinimal',
+  'telegram': 'https://t.me/uslashvlad/',
+  'discord': 'https://discord.gg/mGJJMr7/',
+};
+
+const List<String> settingsPrefsKeys = [
+  'brightness',
+];
+
+const Map<String, dynamic> settingsPrefsVariants = {
+  'brightness': ['system', 'light', 'dark'],
 };

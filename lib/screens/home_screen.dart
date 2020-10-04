@@ -17,7 +17,12 @@ class HomeScreen extends StatelessWidget {
           animals[AnimalType.Dog].listCard(),
           animals[AnimalType.Fox].listCard(),
           animals[AnimalType.Shibe].listCard(),
-          ListCard(screen: SettingsScreen(), title: 'Settings', icon: FontAwesomeIcons.cog)
+          SizedBox(height: 15),
+          ListCard(
+            screen: SettingsScreen(),
+            title: 'Settings',
+            icon: FontAwesomeIcons.cog,
+          )
         ],
       ),
     );

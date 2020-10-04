@@ -59,7 +59,7 @@ class _PicturesScreenBodyState extends State<PicturesScreenBody> {
     _useOnInternet(() async {
       if (imageUrl != null) setState(() => imageUrl = null);
       final tempUrl = await api.getImage();
-      if (true) setState(() => imageUrl = tempUrl);
+      if (mounted) setState(() => imageUrl = tempUrl);
     });
   }
 

@@ -97,3 +97,75 @@ class _SettingsTileInner extends StatelessWidget {
     );
   }
 }
+
+class ThemingCard extends StatelessWidget {
+  ThemingCard({
+    @required this.title,
+    @required this.onTap,
+    this.description,
+    this.icon,
+    this.bgColor,
+    this.textColor,
+  });
+
+  final Color bgColor, textColor;
+  final String title, description;
+  final IconData icon;
+  final Function onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final bg = (bgColor != null) ? bgColor : theme.cardTheme.color;
+    final text =
+        (textColor != null) ? textColor : theme.textTheme.bodyText1.color;
+
+    return Card(
+      margin: EdgeInsets.all(10.0),
+      elevation: 25.0,
+      color: bg,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(11.0)),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(11.0),
+        splashColor: text.withOpacity(0.17),
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(15.0, 15.0, 11.5, 12.5),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (icon != null)
+                Icon(
+                  icon,
+                  size: 28.5,
+                  color: text,
+                ),
+              SizedBox(width: 5.0),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: text,
+                    ),
+                  ),
+                  SizedBox(height: 2.0),
+                  if (description != null)
+                    Text(
+                      description,
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: text.withOpacity(0.75),
+                      ),
+                    ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
