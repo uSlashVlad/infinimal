@@ -36,6 +36,7 @@ const Map<String, String> sources = {
   'github': 'https://github.com/uSlashVlad/infinimal',
   'telegram': 'https://t.me/uslashvlad/',
   'discord': 'https://discord.gg/mGJJMr7/',
+  'icon': 'https://www.flaticon.com/authors/freepik'
 };
 
 const List<String> settingsPrefsKeys = [

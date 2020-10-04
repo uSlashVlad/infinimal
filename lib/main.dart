@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:infinimal/screens/home_screen.dart';
 import 'package:infinimal/utils/data.dart';

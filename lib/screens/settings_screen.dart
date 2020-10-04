@@ -83,6 +83,12 @@ class SettingsScreen extends StatelessWidget {
             icon: FontAwesomeIcons.sitemap,
             header: 'The Shibes API',
           ),
+          SettingsTileButton(
+            onPressed: () => _launchURL(sources['icon']),
+            icon: FontAwesomeIcons.icons,
+            header: 'Icon source',
+            description: 'Icon author :)',
+          ),
           SectionTitle('Credits'),
           SettingsTileButton(
             onPressed: () => _launchURL(sources['github']),
