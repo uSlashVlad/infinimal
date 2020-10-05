@@ -50,7 +50,10 @@ class ListCard extends StatelessWidget {
                 SizedBox(width: 15),
                 Text(
                   title,
-                  style: TextStyle(fontSize: 25),
+                  style: TextStyle(
+                    fontSize: 23,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ],
             ),

@@ -13,7 +13,7 @@ class SectionTitle extends StatelessWidget {
         text,
         style: TextStyle(
           color: theme.accentColor,
-          fontSize: 20,
+          fontSize: 19.0,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -24,20 +24,20 @@ class SectionTitle extends StatelessWidget {
 
 class SettingsTileButton extends StatelessWidget {
   SettingsTileButton({
-    @required this.onPressed,
+    @required this.onTap,
     @required this.icon,
     @required this.header,
     this.description = '',
   });
 
-  final Function onPressed;
+  final Function onTap;
   final IconData icon;
   final String header, description;
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      onPressed: onPressed,
+    return InkWell(
+      onTap: onTap,
       child: _SettingsTileInner(
         icon: icon,
         header: header,
@@ -62,7 +62,7 @@ class _SettingsTileInner extends StatelessWidget {
     final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 10,
+        horizontal: 17.75,
         vertical: 13,
       ),
       child: Row(
@@ -70,7 +70,7 @@ class _SettingsTileInner extends StatelessWidget {
         children: <Widget>[
           Icon(
             icon,
-            size: 30,
+            size: 26.5,
             color: theme.accentColor,
           ),
           SizedBox(width: 15),
@@ -80,13 +80,14 @@ class _SettingsTileInner extends StatelessWidget {
               Text(
                 header,
                 style: TextStyle(
-                  fontSize: 22.5,
+                  fontSize: 20.5,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
               Text(
                 description,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16.5,
                   color: theme.textTheme.headline1.color,
                 ),
               ),
