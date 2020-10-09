@@ -89,21 +89,7 @@ class _PicturesScreenBodyState extends State<PicturesScreenBody> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Flexible(
-          child: Card(
-            elevation: 5.0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20.0),
-                child: (imageUrl != null)
-                    ? Image.network(imageUrl)
-                    : Text('Loading...'),
-              ),
-            ),
-          ),
+          child: ImageWithLoading(imageUrl),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

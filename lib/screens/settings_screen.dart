@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinimal/widgets/settings_ui.dart';
 import 'package:infinimal/utils/data.dart';
 import 'package:infinimal/utils/constants.dart';
+import 'package:infinimal/screens/themes_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   void _launchURL(String url) async {
@@ -27,7 +28,7 @@ class SettingsScreen extends StatelessWidget {
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: [
-          SectionTitle('Theming'),
+          SectionTitle('Visual'),
           Container(
             height: 100.0,
             child: ListView(
@@ -61,6 +62,16 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          SettingsTileButton(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ThemesScreen(),
+              ),
+            ),
+            icon: FontAwesomeIcons.palette,
+            header: 'Themes',
           ),
           SectionTitle('Sources'),
           SettingsTileButton(

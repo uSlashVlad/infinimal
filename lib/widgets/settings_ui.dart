@@ -119,7 +119,7 @@ class ThemingCard extends StatelessWidget {
     final theme = Theme.of(context);
     final bg = (bgColor != null) ? bgColor : theme.cardTheme.color;
     final text =
-        (textColor != null) ? textColor : theme.textTheme.bodyText1.color;
+        (textColor != null) ? textColor : theme.textTheme.headline1.color;
 
     return Card(
       margin: EdgeInsets.all(10.0),

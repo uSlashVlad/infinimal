@@ -12,6 +12,7 @@ class AnimalListCard extends StatelessWidget {
       screen: object.screen(),
       icon: object.icon,
       title: object.name,
+      image: AssetImage(object.imageName),
     );
   }
 }
@@ -21,11 +22,13 @@ class ListCard extends StatelessWidget {
     @required this.screen,
     @required this.title,
     @required this.icon,
+    this.image,
   });
 
   final Widget screen;
   final String title;
   final IconData icon;
+  final ImageProvider image;
 
   @override
   Widget build(BuildContext context) {
@@ -35,28 +38,42 @@ class ListCard extends StatelessWidget {
         vertical: 4.0,
       ),
       child: Card(
-        child: FlatButton(
-          onPressed: () => Navigator.push(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(10),
+          onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
               builder: (BuildContext context) => screen,
             ),
           ),
-          child: Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Row(
-              children: [
-                Icon(icon, size: 25),
-                SizedBox(width: 15),
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 23,
-                    fontWeight: FontWeight.w400,
+          child: Column(
+            children: [
+              if (image != null)
+                Padding(
+                  padding: EdgeInsets.all(6.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image(image: image),
                   ),
                 ),
-              ],
-            ),
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
+                    Icon(icon, size: 25),
+                    SizedBox(width: 15),
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -98,6 +115,51 @@ class RoundedButton extends StatelessWidget {
               fontSize: 27.5,
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class ImageWithLoading extends StatelessWidget {
+  ImageWithLoading(this.imageUrl);
+
+  final String imageUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    bool pictureIsLoaded = false;
+
+    return Card(
+      elevation: 5.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20.0),
+          child: (imageUrl != null)
+              ? Image(
+                  image: NetworkImage(imageUrl),
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null && !pictureIsLoaded) {
+                      if ((loadingProgress != null &&
+                          loadingProgress.cumulativeBytesLoaded <
+                              loadingProgress.expectedTotalBytes)) {
+                        return CircularProgressIndicator(
+                          value: loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes,
+                        );
+                      }
+                      return CircularProgressIndicator();
+                    } else {
+                      pictureIsLoaded = true;
+                      return child;
+                    }
+                  },
+                )
+              : CircularProgressIndicator(),
         ),
       ),
     );

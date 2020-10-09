@@ -7,24 +7,28 @@ final Map<AnimalType, AnimalObject> animals = {
     name: 'Cat',
     apiUrl: 'https://api.thecatapi.com/v1/images/search/',
     type: AnimalType.Cat,
+    imageName: 'assets/images/cat.jpg',
   ),
   AnimalType.Dog: AnimalObject(
     icon: FontAwesomeIcons.dog,
     name: 'Dog',
     apiUrl: 'https://api.thedogapi.com/v1/images/search/',
     type: AnimalType.Dog,
+    imageName: 'assets/images/dog.jpg',
   ),
   AnimalType.Shibe: AnimalObject(
     icon: FontAwesomeIcons.dog,
     name: 'Shiba inu',
     apiUrl: 'http://shibe.online/api/shibes',
     type: AnimalType.Shibe,
+    imageName: 'assets/images/shiba.jpg',
   ),
   AnimalType.Fox: AnimalObject(
     icon: FontAwesomeIcons.firefox,
     name: 'Fox',
     apiUrl: 'https://randomfox.ca/floof/',
     type: AnimalType.Fox,
+    imageName: 'assets/images/fox.jpg',
   ),
 };
 
@@ -41,6 +45,8 @@ const Map<String, String> sources = {
 
 const List<String> settingsPrefsKeys = [
   'brightness',
+  'dark_theme',
+  'light_theme',
 ];
 
 const Map<String, dynamic> settingsPrefsVariants = {
