@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:infinimal/widgets/settings_ui.dart';
 import 'package:infinimal/utils/data.dart';
 import 'package:infinimal/utils/constants.dart';
@@ -15,10 +16,6 @@ class SettingsScreen extends StatelessWidget {
     }
   }
 
-  void _setBrightness(String val) {
-    DataObject().settingsBox.put(settingsPrefsKeys[0], val);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,40 +26,7 @@ class SettingsScreen extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         children: [
           SectionTitle('Visual'),
-          Container(
-            height: 100.0,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              children: [
-                ThemingCard(
-                  onTap: () => _setBrightness(
-                      settingsPrefsVariants[settingsPrefsKeys[0]][0]),
-                  title: 'System defaults',
-                  description: 'Use system preferences',
-                  icon: Icons.sync,
-                ),
-                ThemingCard(
-                  onTap: () => _setBrightness(
-                      settingsPrefsVariants[settingsPrefsKeys[0]][1]),
-                  title: 'Light Theme',
-                  description: 'Always use light theme',
-                  icon: FontAwesomeIcons.sun,
-                  bgColor: Colors.white,
-                  textColor: Colors.grey[900],
-                ),
-                ThemingCard(
-                  onTap: () => _setBrightness(
-                      settingsPrefsVariants[settingsPrefsKeys[0]][2]),
-                  title: 'Dark theme',
-                  description: 'Always use dark theme',
-                  icon: FontAwesomeIcons.moon,
-                  bgColor: Colors.grey[850],
-                  textColor: Colors.white,
-                ),
-              ],
-            ),
-          ),
+          ThemeModeList(),
           SettingsTileButton(
             onTap: () => Navigator.push(
               context,
@@ -118,6 +82,68 @@ class SettingsScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class ThemeModeList extends StatelessWidget {
+  const ThemeModeList({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: DataObject().settingsBox.listenable(),
+      builder: (context, box, child) {
+        final String themeMode = box.get(settingsPrefsKeys[0]);
+        return Container(
+          height: 100.0,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            physics: BouncingScrollPhysics(),
+            children: [
+              ThemingCard(
+                onTap: () => box.put(settingsPrefsKeys[0],
+                    settingsPrefsVariants[settingsPrefsKeys[0]][0]),
+                title: 'System defaults',
+                description: 'Uses system preferences',
+                icon: Icons.sync,
+                trailingIcon: (themeMode ==
+                        settingsPrefsVariants[settingsPrefsKeys[0]][0])
+                    ? FontAwesomeIcons.check
+                    : null,
+              ),
+              ThemingCard(
+                onTap: () => box.put(settingsPrefsKeys[0],
+                    settingsPrefsVariants[settingsPrefsKeys[0]][1]),
+                title: 'Light Theme',
+                description: 'Always uses light theme',
+                icon: FontAwesomeIcons.sun,
+                trailingIcon: (themeMode ==
+                        settingsPrefsVariants[settingsPrefsKeys[0]][1])
+                    ? FontAwesomeIcons.check
+                    : null,
+                bgColor: Colors.white,
+                textColor: Colors.grey[900],
+              ),
+              ThemingCard(
+                onTap: () => box.put(settingsPrefsKeys[0],
+                    settingsPrefsVariants[settingsPrefsKeys[0]][2]),
+                title: 'Dark theme',
+                description: 'Always uses dark theme',
+                icon: FontAwesomeIcons.moon,
+                trailingIcon: (themeMode ==
+                        settingsPrefsVariants[settingsPrefsKeys[0]][2])
+                    ? FontAwesomeIcons.check
+                    : null,
+                bgColor: Colors.grey[850],
+                textColor: Colors.white,
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

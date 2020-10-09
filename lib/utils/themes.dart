@@ -3,11 +3,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinimal/utils/models.dart';
 
 const List<String> themeKeys = [
-  'light',
+  'deflight',
   'pink',
-  'dark',
+  'defdark',
   'onedark',
   'monokai',
+];
+const List<String> buttonKeys = [
+  'text',
+  'new',
+  'download',
 ];
 
 final _lightTheme = ThemeData.light().copyWith(
@@ -42,43 +47,64 @@ final _monokaiTheme = _darkTheme.copyWith(
   ),
 );
 
+final Map<String, Color> _defButtonsColors = {
+  buttonKeys[0]: Colors.white,
+  buttonKeys[1]: Color(0xff2196f3),
+  buttonKeys[2]: Colors.yellow[800],
+};
+final Map<String, Color> _pastelButtonsColors = {
+  buttonKeys[0]: Color(0xff494949),
+  buttonKeys[1]: Color(0xff99d8d0),
+  buttonKeys[2]: Color(0xfff0dd92),
+};
+final Map<String, Color> _onedarkButtonsColors = {
+  buttonKeys[0]: Color(0xff21252b),
+  buttonKeys[1]: Color(0xff61afef),
+  buttonKeys[2]: Color(0xffe5c07b),
+};
+final Map<String, Color> _monokaiButtonsColors = {
+  buttonKeys[0]: Color(0xff2d2a2e),
+  buttonKeys[1]: Color(0xff78dce8),
+  buttonKeys[2]: Color(0xfffc9867),
+};
+
 final Map<String, CustomTheme> themes = {
   themeKeys[0]: CustomTheme(
     title: 'Default light',
     description: 'Default light theme',
     icon: FontAwesomeIcons.sun,
     theme: _lightTheme,
-    additions: null,
+    additions: _defButtonsColors,
   ),
   themeKeys[1]: CustomTheme(
+    title: 'Pink!',
+    description: 'Interesting',
+    icon: FontAwesomeIcons.star,
+    theme: _pinkTheme,
+    additions: _pastelButtonsColors,
+  ),
+  themeKeys[2]: CustomTheme(
     title: 'Default dark',
     description: 'Default dark theme',
     icon: FontAwesomeIcons.moon,
     theme: _darkTheme,
-    additions: null,
+    additions: _defButtonsColors,
     isDark: true,
-  ),
-  themeKeys[2]: CustomTheme(
-    title: 'Pink!',
-    description: 'Interesting',
-    icon: FontAwesomeIcons.starHalf,
-    theme: _pinkTheme,
-    additions: null,
   ),
   themeKeys[3]: CustomTheme(
     title: 'One Dark',
     description: 'Awesome color theme from Atom IDE',
-    icon: FontAwesomeIcons.moon,
+    icon: FontAwesomeIcons.atom,
     theme: _oneDarkTheme,
-    additions: null,
+    additions: _onedarkButtonsColors,
     isDark: true,
   ),
   themeKeys[4]: CustomTheme(
     title: 'Monokai Pro',
     description: 'One of my favorite IDE themes',
-    icon: FontAwesomeIcons.moon,
+    icon: FontAwesomeIcons.code,
     theme: _monokaiTheme,
-    additions: null,
+    additions: _monokaiButtonsColors,
     isDark: true,
   ),
 };

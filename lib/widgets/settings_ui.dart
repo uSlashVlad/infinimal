@@ -105,13 +105,14 @@ class ThemingCard extends StatelessWidget {
     @required this.onTap,
     this.description,
     this.icon,
+    this.trailingIcon,
     this.bgColor,
     this.textColor,
   });
 
   final Color bgColor, textColor;
   final String title, description;
-  final IconData icon;
+  final IconData icon, trailingIcon;
   final Function onTap;
 
   @override
@@ -141,16 +142,28 @@ class ThemingCard extends StatelessWidget {
                   size: 28.5,
                   color: text,
                 ),
+              SizedBox(width: 10.0),
               SizedBox(width: 5.0),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color: text,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: text,
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      if (trailingIcon != null)
+                        Icon(
+                          trailingIcon,
+                          color: text,
+                          size: 15,
+                        ),
+                    ],
                   ),
                   SizedBox(height: 2.0),
                   if (description != null)
@@ -162,7 +175,7 @@ class ThemingCard extends StatelessWidget {
                       ),
                     ),
                 ],
-              )
+              ),
             ],
           ),
         ),

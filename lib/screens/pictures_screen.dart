@@ -5,6 +5,8 @@ import 'package:infinimal/utils/apis.dart';
 import 'package:infinimal/utils/downloading.dart';
 import 'package:infinimal/utils/models.dart';
 import 'package:infinimal/widgets/mini_widgets.dart';
+import 'package:infinimal/utils/data.dart';
+import 'package:infinimal/utils/themes.dart';
 
 class PicturesScreen extends StatelessWidget {
   PicturesScreen(this.object);
@@ -44,6 +46,7 @@ class _PicturesScreenBodyState extends State<PicturesScreenBody> {
   ImageApi api;
   DownloadHelper downloader;
   String imageUrl;
+  Map<String, Color> buttonsColors;
 
   Future<void> _useOnInternet(Function function) async {
     final connection = await DataConnectionChecker().hasConnection;
@@ -85,6 +88,8 @@ class _PicturesScreenBodyState extends State<PicturesScreenBody> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = DataObject().currentTheme(context).additions;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -96,15 +101,15 @@ class _PicturesScreenBodyState extends State<PicturesScreenBody> {
           children: [
             RoundedButton(
               text: 'New picture',
-              color: Colors.cyan,
+              color: colors[buttonKeys[1]],
               onTap: updateImage,
-              textColor: Colors.white,
+              textColor: colors[buttonKeys[0]],
             ),
             RoundedButton(
               text: 'Download',
-              color: Colors.amber,
+              color: colors[buttonKeys[2]],
               onTap: downloadImage,
-              textColor: Colors.white,
+              textColor: colors[buttonKeys[0]],
             ),
           ],
         ),
