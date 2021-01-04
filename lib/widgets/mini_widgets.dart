@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:infinimal/utils/models.dart';
 
+/// Widget for main menu.
+/// Just gets data from [object] and inserts into ListCard widget
 class AnimalListCard extends StatelessWidget {
   AnimalListCard(this.object);
 
@@ -17,6 +19,8 @@ class AnimalListCard extends StatelessWidget {
   }
 }
 
+/// Universal card with some styling.
+/// Obviosly it is usefull for listz
 class ListCard extends StatelessWidget {
   ListCard({
     @required this.screen,
@@ -81,6 +85,7 @@ class ListCard extends StatelessWidget {
   }
 }
 
+/// Button for picture screen. Just rounded clickable button with styling.
 class RoundedButton extends StatelessWidget {
   RoundedButton({
     @required this.text,
@@ -121,6 +126,8 @@ class RoundedButton extends StatelessWidget {
   }
 }
 
+/// Widget for picture screen. It is Image in card, that loads image data from
+/// the internet and shows progress indicator while loading
 class ImageWithLoading extends StatelessWidget {
   ImageWithLoading(this.imageUrl);
 

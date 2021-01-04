@@ -7,6 +7,7 @@ import 'package:infinimal/widgets/settings_ui.dart';
 import 'package:infinimal/utils/constants.dart';
 import 'package:infinimal/utils/data.dart';
 
+/// Themes screen (can be accessed from main settings screen)
 class ThemesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

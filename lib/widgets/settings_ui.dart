@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Simple widget with just text with accent color and some font styling
 class SectionTitle extends StatelessWidget {
   SectionTitle(this.text);
 
@@ -22,6 +23,8 @@ class SectionTitle extends StatelessWidget {
   }
 }
 
+/// Widget that looks like native android tiles.
+/// Has icon, title, description. Clickable
 class SettingsTileButton extends StatelessWidget {
   SettingsTileButton({
     @required this.onTap,
@@ -47,6 +50,8 @@ class SettingsTileButton extends StatelessWidget {
   }
 }
 
+/// More reusable than [SettingsTileButton],
+/// can be used not only as button
 class _SettingsTileInner extends StatelessWidget {
   _SettingsTileInner({
     @required this.icon,
@@ -99,6 +104,9 @@ class _SettingsTileInner extends StatelessWidget {
   }
 }
 
+/// Awesome card with custom styles.
+/// It is used in settings for brightness mode,
+/// on themes screen for themes cards
 class ThemingCard extends StatelessWidget {
   ThemingCard({
     @required this.title,

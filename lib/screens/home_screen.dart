@@ -5,6 +5,7 @@ import 'package:infinimal/utils/models.dart';
 import 'package:infinimal/widgets/mini_widgets.dart';
 import 'package:infinimal/screens/settings_screen.dart';
 
+/// Home screen with ist of all animals
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

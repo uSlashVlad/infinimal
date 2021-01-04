@@ -7,7 +7,9 @@ import 'package:infinimal/utils/data.dart';
 import 'package:infinimal/utils/constants.dart';
 import 'package:infinimal/screens/themes_screen.dart';
 
+/// Main settings screen
 class SettingsScreen extends StatelessWidget {
+  /// Tries to launch url using url_launcher
   void _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -25,6 +27,7 @@ class SettingsScreen extends StatelessWidget {
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: [
+          // Visual section
           SectionTitle('Visual'),
           ThemeModeList(),
           SettingsTileButton(
@@ -37,6 +40,7 @@ class SettingsScreen extends StatelessWidget {
             icon: FontAwesomeIcons.palette,
             header: 'Themes',
           ),
+          // Sources section
           SectionTitle('Sources'),
           SettingsTileButton(
             onTap: () => _launchURL(sources['catApi']),
@@ -64,6 +68,7 @@ class SettingsScreen extends StatelessWidget {
             header: 'Icon source',
             description: 'Icon author :)',
           ),
+          // Credits section
           SectionTitle('Credits'),
           SettingsTileButton(
             onTap: () => _launchURL(sources['github']),
@@ -86,11 +91,8 @@ class SettingsScreen extends StatelessWidget {
   }
 }
 
+/// Widget with list of brightness modes
 class ThemeModeList extends StatelessWidget {
-  const ThemeModeList({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(

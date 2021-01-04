@@ -8,6 +8,7 @@ import 'package:infinimal/widgets/mini_widgets.dart';
 import 'package:infinimal/utils/data.dart';
 import 'package:infinimal/utils/themes.dart';
 
+/// Screen with picture and buttons. Actually the core screen in app
 class PicturesScreen extends StatelessWidget {
   PicturesScreen(this.object);
 
@@ -25,6 +26,7 @@ class PicturesScreen extends StatelessWidget {
   }
 }
 
+/// Main part of pictures screen
 class PicturesScreenBody extends StatefulWidget {
   PicturesScreenBody(this.object);
 
@@ -38,9 +40,9 @@ class _PicturesScreenBodyState extends State<PicturesScreenBody> {
   @override
   initState() {
     super.initState();
-    api = ImageApi(widget.object);
-    downloader = DownloadHelper();
-    updateImage();
+    api = ImageApi(widget.object); // Creating API class instance
+    downloader = DownloadHelper(); // Creating DownloadHelper class instance
+    updateImage(); // Initial loading of image
   }
 
   ImageApi api;
@@ -48,14 +50,18 @@ class _PicturesScreenBodyState extends State<PicturesScreenBody> {
   String imageUrl;
   Map<String, Color> buttonsColors;
 
+  /// Method for checking the internet connection.
+  /// Calls [function] if device has internet connection,
+  /// if it hasn't, shows toast message about it
   Future<void> _useOnInternet(Function function) async {
     final connection = await DataConnectionChecker().hasConnection;
     if (connection)
       function();
     else
-      Toast.show('No internet connection', context);
+      _showToast('No internet connection');
   }
 
+  /// Just shows toast for current context with specified [text]
   void _showToast(String text) => Toast.show(text, context);
 
   void updateImage() async {
@@ -66,6 +72,8 @@ class _PicturesScreenBodyState extends State<PicturesScreenBody> {
     });
   }
 
+  /// Downloads image from [imageUrl].
+  /// Asks for permissions and tries to download
   void downloadImage() async {
     _useOnInternet(() async {
       if (imageUrl != null) {
@@ -93,9 +101,11 @@ class _PicturesScreenBodyState extends State<PicturesScreenBody> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        // Image block
         Flexible(
           child: ImageWithLoading(imageUrl),
         ),
+        // Buttons block
         Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
