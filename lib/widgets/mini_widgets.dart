@@ -23,16 +23,16 @@ class AnimalListCard extends StatelessWidget {
 /// Obviosly it is usefull for listz
 class ListCard extends StatelessWidget {
   ListCard({
-    @required this.screen,
-    @required this.title,
-    @required this.icon,
+    required this.screen,
+    required this.title,
+    required this.icon,
     this.image,
   });
 
   final Widget screen;
   final String title;
   final IconData icon;
-  final ImageProvider image;
+  final ImageProvider? image;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class ListCard extends StatelessWidget {
                   padding: EdgeInsets.all(6.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image(image: image),
+                    child: Image(image: (image)!),
                   ),
                 ),
               Padding(
@@ -88,15 +88,15 @@ class ListCard extends StatelessWidget {
 /// Button for picture screen. Just rounded clickable button with styling.
 class RoundedButton extends StatelessWidget {
   RoundedButton({
-    @required this.text,
-    @required this.color,
-    @required this.textColor,
-    @required this.onTap,
+    required this.text,
+    required this.color,
+    required this.textColor,
+    required this.onTap,
   });
 
   final String text;
   final Color color, textColor;
-  final Function onTap;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -146,17 +146,17 @@ class ImageWithLoading extends StatelessWidget {
         padding: EdgeInsets.all(8.0),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20.0),
-          child: (imageUrl != null)
+          child: (imageUrl != '')
               ? Image(
                   image: NetworkImage(imageUrl),
                   loadingBuilder: (context, child, loadingProgress) {
                     if (loadingProgress == null && !pictureIsLoaded) {
                       if ((loadingProgress != null &&
                           loadingProgress.cumulativeBytesLoaded <
-                              loadingProgress.expectedTotalBytes)) {
+                              (loadingProgress.expectedTotalBytes)!)) {
                         return CircularProgressIndicator(
                           value: loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes,
+                              (loadingProgress.expectedTotalBytes)!,
                         );
                       }
                       return CircularProgressIndicator();

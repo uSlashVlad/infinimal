@@ -50,7 +50,7 @@ final _monokaiTheme = _darkTheme.copyWith(
 final Map<String, Color> _defButtonsColors = {
   buttonKeys[0]: Colors.white,
   buttonKeys[1]: Color(0xff2196f3),
-  buttonKeys[2]: Colors.yellow[800],
+  buttonKeys[2]: Color(0xfff9a825),
 };
 final Map<String, Color> _pastelButtonsColors = {
   buttonKeys[0]: Color(0xff494949),

@@ -20,7 +20,7 @@ class DownloadHelper {
           url.split('.').last,
           albumName: 'Infinimal',
         );
-        return (res) ? DownloadStatus.completed : DownloadStatus.error;
+        return (res)! ? DownloadStatus.completed : DownloadStatus.error;
       } else {
         return DownloadStatus.noPerm;
       }
@@ -35,7 +35,7 @@ class DownloadHelper {
       url,
       options: Options(responseType: ResponseType.bytes),
     );
-    return Uint8List.fromList(res.data);
+    return Uint8List.fromList((res.data)!);
   }
 
   Future<bool> _checkPermission() async {

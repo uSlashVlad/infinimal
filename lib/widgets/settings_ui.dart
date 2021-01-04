@@ -27,13 +27,13 @@ class SectionTitle extends StatelessWidget {
 /// Has icon, title, description. Clickable
 class SettingsTileButton extends StatelessWidget {
   SettingsTileButton({
-    @required this.onTap,
-    @required this.icon,
-    @required this.header,
+    required this.onTap,
+    required this.icon,
+    required this.header,
     this.description = '',
   });
 
-  final Function onTap;
+  final void Function() onTap;
   final IconData icon;
   final String header, description;
 
@@ -54,9 +54,9 @@ class SettingsTileButton extends StatelessWidget {
 /// can be used not only as button
 class _SettingsTileInner extends StatelessWidget {
   _SettingsTileInner({
-    @required this.icon,
-    @required this.header,
-    @required this.description,
+    required this.icon,
+    required this.header,
+    required this.description,
   });
 
   final IconData icon;
@@ -93,7 +93,7 @@ class _SettingsTileInner extends StatelessWidget {
                 description,
                 style: TextStyle(
                   fontSize: 16.5,
-                  color: theme.textTheme.headline1.color,
+                  color: (theme.textTheme.headline1)!.color,
                 ),
               ),
             ],
@@ -109,8 +109,8 @@ class _SettingsTileInner extends StatelessWidget {
 /// on themes screen for themes cards
 class ThemingCard extends StatelessWidget {
   ThemingCard({
-    @required this.title,
-    @required this.onTap,
+    required this.title,
+    required this.onTap,
     this.description,
     this.icon,
     this.trailingIcon,
@@ -118,17 +118,18 @@ class ThemingCard extends StatelessWidget {
     this.textColor,
   });
 
-  final Color bgColor, textColor;
-  final String title, description;
-  final IconData icon, trailingIcon;
-  final Function onTap;
+  final Color? bgColor, textColor;
+  final String title;
+  final String? description;
+  final IconData? icon, trailingIcon;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final bg = (bgColor != null) ? bgColor : theme.cardTheme.color;
     final text =
-        (textColor != null) ? textColor : theme.textTheme.headline1.color;
+        (textColor != null) ? textColor : (theme.textTheme.headline1)!.color;
 
     return Card(
       margin: EdgeInsets.all(10.0),
@@ -138,7 +139,7 @@ class ThemingCard extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(11.0),
-        splashColor: text.withOpacity(0.17),
+        splashColor: (text)!.withOpacity(0.17),
         child: Padding(
           padding: EdgeInsets.fromLTRB(15.0, 15.0, 11.5, 12.5),
           child: Row(
@@ -176,7 +177,7 @@ class ThemingCard extends StatelessWidget {
                   SizedBox(height: 2.0),
                   if (description != null)
                     Text(
-                      description,
+                      (description)!,
                       style: TextStyle(
                         fontSize: 16.0,
                         color: text.withOpacity(0.75),

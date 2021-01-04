@@ -17,21 +17,21 @@ class ThemesScreen extends StatelessWidget {
       ),
       body: ValueListenableBuilder(
         valueListenable: DataObject().settingsBox.listenable(),
-        builder: (context, box, child) {
+        builder: (context, dynamic box, child) {
           final String lightTheme = box.get(settingsPrefsKeys[1]);
           final String darkTheme = box.get(settingsPrefsKeys[2]);
-          
+
           return ListView.builder(
             physics: BouncingScrollPhysics(),
             itemBuilder: (context, ind) {
-              CustomTheme theme = themes[themeKeys[ind]];
+              CustomTheme theme = (themes[themeKeys[ind]])!;
               return ThemingCard(
                 title: theme.title,
                 description:
-                    (theme.description != null) ? theme.description : '',
+                    ((theme.description != null) ? theme.description : '')!,
                 icon: theme.icon,
                 bgColor: theme.theme.cardColor,
-                textColor: theme.theme.textTheme.headline1.color,
+                textColor: ((theme.theme.textTheme.headline1)!.color)!,
                 onTap: () => DataObject().settingsBox.put(
                     (theme.isDark)
                         ? settingsPrefsKeys[2]

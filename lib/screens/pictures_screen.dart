@@ -45,10 +45,10 @@ class _PicturesScreenBodyState extends State<PicturesScreenBody> {
     updateImage(); // Initial loading of image
   }
 
-  ImageApi api;
-  DownloadHelper downloader;
-  String imageUrl;
-  Map<String, Color> buttonsColors;
+  late ImageApi api;
+  late DownloadHelper downloader;
+  late String imageUrl;
+  late Map<String, Color> buttonsColors;
 
   /// Method for checking the internet connection.
   /// Calls [function] if device has internet connection,
@@ -66,7 +66,7 @@ class _PicturesScreenBodyState extends State<PicturesScreenBody> {
 
   void updateImage() async {
     _useOnInternet(() async {
-      if (imageUrl != null) setState(() => imageUrl = null);
+      if (imageUrl != '') setState(() => imageUrl = '');
       final tempUrl = await api.getImage();
       if (mounted) setState(() => imageUrl = tempUrl);
     });
@@ -76,7 +76,7 @@ class _PicturesScreenBodyState extends State<PicturesScreenBody> {
   /// Asks for permissions and tries to download
   void downloadImage() async {
     _useOnInternet(() async {
-      if (imageUrl != null) {
+      if (imageUrl != '') {
         final status = await downloader.download(imageUrl);
         switch (status) {
           case DownloadStatus.error:
@@ -96,7 +96,7 @@ class _PicturesScreenBodyState extends State<PicturesScreenBody> {
 
   @override
   Widget build(BuildContext context) {
-    final colors = DataObject().currentTheme(context).additions;
+    final colors = (DataObject().currentTheme(context))!.additions;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -111,15 +111,15 @@ class _PicturesScreenBodyState extends State<PicturesScreenBody> {
           children: [
             RoundedButton(
               text: 'New picture',
-              color: colors[buttonKeys[1]],
+              color: ((colors)![buttonKeys[1]])!,
               onTap: updateImage,
-              textColor: colors[buttonKeys[0]],
+              textColor: (colors[buttonKeys[0]])!,
             ),
             RoundedButton(
               text: 'Download',
-              color: colors[buttonKeys[2]],
+              color: (colors[buttonKeys[2]])!,
               onTap: downloadImage,
-              textColor: colors[buttonKeys[0]],
+              textColor: (colors[buttonKeys[0]])!,
             ),
           ],
         ),

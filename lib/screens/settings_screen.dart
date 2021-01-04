@@ -43,27 +43,27 @@ class SettingsScreen extends StatelessWidget {
           // Sources section
           SectionTitle('Sources'),
           SettingsTileButton(
-            onTap: () => _launchURL(sources['catApi']),
+            onTap: () => _launchURL((sources['catApi'])!),
             icon: FontAwesomeIcons.sitemap,
             header: 'The Cat API',
           ),
           SettingsTileButton(
-            onTap: () => _launchURL(sources['dogApi']),
+            onTap: () => _launchURL((sources['dogApi'])!),
             icon: FontAwesomeIcons.sitemap,
             header: 'The Dog API',
           ),
           SettingsTileButton(
-            onTap: () => _launchURL(sources['foxApi']),
+            onTap: () => _launchURL((sources['foxApi'])!),
             icon: FontAwesomeIcons.sitemap,
             header: 'Random Fox API',
           ),
           SettingsTileButton(
-            onTap: () => _launchURL(sources['shibesApi']),
+            onTap: () => _launchURL((sources['shibesApi'])!),
             icon: FontAwesomeIcons.sitemap,
             header: 'The Shibes API',
           ),
           SettingsTileButton(
-            onTap: () => _launchURL(sources['icon']),
+            onTap: () => _launchURL((sources['icon'])!),
             icon: FontAwesomeIcons.icons,
             header: 'Icon source',
             description: 'Icon author :)',
@@ -71,17 +71,17 @@ class SettingsScreen extends StatelessWidget {
           // Credits section
           SectionTitle('Credits'),
           SettingsTileButton(
-            onTap: () => _launchURL(sources['github']),
+            onTap: () => _launchURL((sources['github'])!),
             icon: FontAwesomeIcons.github,
             header: 'Project repository',
           ),
           SettingsTileButton(
-            onTap: () => _launchURL(sources['telegram']),
+            onTap: () => _launchURL((sources['telegram'])!),
             icon: FontAwesomeIcons.telegram,
             header: 'My personal Telegram',
           ),
           SettingsTileButton(
-            onTap: () => _launchURL(sources['discord']),
+            onTap: () => _launchURL((sources['discord'])!),
             icon: FontAwesomeIcons.discord,
             header: 'Our Discord server',
           ),
@@ -97,7 +97,7 @@ class ThemeModeList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: DataObject().settingsBox.listenable(),
-      builder: (context, box, child) {
+      builder: (context, dynamic box, child) {
         final String themeMode = box.get(settingsPrefsKeys[0]);
         return Container(
           height: 100.0,
@@ -127,7 +127,7 @@ class ThemeModeList extends StatelessWidget {
                     ? FontAwesomeIcons.check
                     : null,
                 bgColor: Colors.white,
-                textColor: Colors.grey[900],
+                textColor: (Colors.grey[900])!,
               ),
               ThemingCard(
                 onTap: () => box.put(settingsPrefsKeys[0],
@@ -139,7 +139,7 @@ class ThemeModeList extends StatelessWidget {
                         settingsPrefsVariants[settingsPrefsKeys[0]][2])
                     ? FontAwesomeIcons.check
                     : null,
-                bgColor: Colors.grey[850],
+                bgColor: (Colors.grey[850])!,
                 textColor: Colors.white,
               ),
             ],

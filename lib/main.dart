@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     // Widget for settings loading
     return ValueListenableBuilder(
       valueListenable: DataObject().settingsBox.listenable(),
-      builder: (context, box, child) {
+      builder: (context, dynamic box, child) {
         // Brightness mode loading
         final brightnessValStores = box.get(settingsPrefsKeys[0]);
         final themeMode = (brightnessValStores ==
@@ -32,15 +32,15 @@ class MyApp extends StatelessWidget {
 
         // Light theme loading
         final lightThemeValStores = box.get(settingsPrefsKeys[1]);
-        final lightTheme = themes[(lightThemeValStores != null)
+        final lightTheme = (themes[(lightThemeValStores != null)
                 ? lightThemeValStores
-                : themeKeys[0]]
+                : themeKeys[0]])!
             .theme;
         // Dark theme loading
         final darkThemeValStores = box.get(settingsPrefsKeys[2]);
-        final darkTheme = themes[(darkThemeValStores != null)
+        final darkTheme = (themes[(darkThemeValStores != null)
                 ? darkThemeValStores
-                : themeKeys[1]]
+                : themeKeys[1]])!
             .theme;
 
         print(

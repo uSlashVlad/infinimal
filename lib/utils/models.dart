@@ -6,11 +6,11 @@ enum AnimalType { Cat, Dog, Fox, Shibe }
 
 class AnimalObject {
   AnimalObject({
-    @required this.icon,
-    @required this.name,
-    @required this.apiUrl,
-    @required this.type,
-    @required this.imageName,
+    required this.icon,
+    required this.name,
+    required this.apiUrl,
+    required this.type,
+    required this.imageName,
   });
 
   final IconData icon;
@@ -24,17 +24,18 @@ class AnimalObject {
 
 class CustomTheme {
   CustomTheme({
-    @required this.theme,
+    required this.theme,
     this.isDark = false,
     this.additions,
-    @required this.title,
+    required this.title,
     this.description,
-    @required this.icon,
+    required this.icon,
   });
 
   final bool isDark;
-  final String title, description;
+  final String title;
+  final String? description;
   final IconData icon;
   final ThemeData theme;
-  final Map<String, Color> additions;
+  final Map<String, Color>? additions;
 }

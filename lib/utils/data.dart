@@ -10,10 +10,10 @@ class DataObject {
   factory DataObject() => _singleton;
   DataObject._internal();
 
-  Box<String> _settingsBox;
+  late Box<String> _settingsBox;
   Box<String> get settingsBox => _settingsBox;
 
-  CustomTheme currentTheme(BuildContext context) {
+  CustomTheme? currentTheme(BuildContext context) {
     final brightness = MediaQuery.of(context).platformBrightness;
 
     final String themeMode = _settingsBox.get(settingsPrefsKeys[0]);
